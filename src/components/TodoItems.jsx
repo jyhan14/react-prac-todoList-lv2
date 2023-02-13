@@ -1,27 +1,14 @@
 import React from "react";
 import Todo from "./Todo";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
-const TodoItems = ({ todos, setTodos }) => {
+const TodoItems = () => {
 
     const todos2 = useSelector((state) => {
         return state.todos;
     });
 
-
-    const deleteTodos = (id) => {
-        const newTodos = todos.filter((todo) => todo.id !== id);
-        setTodos(newTodos);
-    };
-
-    const updateTodos = (id) => {
-        setTodos(
-            todos.map((todo) =>
-                todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
-            )
-        );
-    };
 
     return (
         <TodoItemsBox>
@@ -33,8 +20,6 @@ const TodoItems = ({ todos, setTodos }) => {
                             <Todo
                                 key={todo.id}
                                 todo={todo}
-                                deleteTodos={deleteTodos}
-                                updateTodos={updateTodos}
                             />
                         );
                     }
@@ -48,8 +33,6 @@ const TodoItems = ({ todos, setTodos }) => {
                             <Todo
                                 key={todo.id}
                                 todo={todo}
-                                deleteTodos={deleteTodos}
-                                updateTodos={updateTodos}
                             />
                         );
                     } else return null;

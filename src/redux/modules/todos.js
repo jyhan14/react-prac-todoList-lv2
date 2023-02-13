@@ -15,6 +15,15 @@ export const create = (id, title, body) => {
     };
 };
 
+export const deleteTodo = (id) => {
+    console.log(id);
+    return {
+        type: DELETE,
+        id,
+
+    };
+};
+
 // 초기 상태값(state)
 const initialState = [
     {
@@ -38,6 +47,10 @@ const todos = (state = initialState, action) => {
         case CREATE:
             const newTodo = [...state, action.payload];
             return newTodo;
+        case DELETE:
+            const newTodos = [...state,state.filter((todo) => todo.id !== action.id)];
+            return newTodos;
+            return state;
         default:
             return state;
     }
