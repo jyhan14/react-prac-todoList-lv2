@@ -1,6 +1,7 @@
 // action value
 const CREATE = "CREATE";
 const DELETE = "DELETE";
+const UPDATE = "UPDATE";
 
 // action creator
 export const create = (id, title, body) => {
@@ -15,10 +16,19 @@ export const create = (id, title, body) => {
     };
 };
 
-export const deleteTodo = (id) => {
+export const deleteAction = (id) => {
     console.log(id);
     return {
         type: DELETE,
+        id,
+
+    };
+};
+
+export const updateAction = (id) => {
+    console.log(id);
+    return {
+        type: UPDATE,
         id,
 
     };
@@ -48,9 +58,13 @@ const todos = (state = initialState, action) => {
             const newTodo = [...state, action.payload];
             return newTodo;
         case DELETE:
-            const newTodos = [...state,state.filter((todo) => todo.id !== action.id)];
-            return newTodos;
-            return state;
+            const deleteTodos = state.filter((todo) => todo.id !== action.id);
+            return deleteTodos;
+        case UPDATE:
+            const updateTodos = state.map((todo) =>
+            todo.id === action.id ? { ...todo, isDone: !todo.isDone } : todo
+            )
+            return updateTodos;
         default:
             return state;
     }

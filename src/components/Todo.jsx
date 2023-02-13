@@ -1,7 +1,22 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import { deleteAction, updateAction } from "../redux/modules/todos";
 
-const Todo = ({ todo, deleteTodos, updateTodos }) => {
+const Todo = ({todo}) => {
+    const todos = useSelector((state) => {
+        return state.todos;
+    });
+    const dispatch = useDispatch();
+
+    const deleteTodos = (id) => {
+        dispatch(deleteAction(id));
+    }
+
+    const updateTodos = (id) => {
+        dispatch(updateAction(id));
+    }
+
     return (
         <TodoContainer>
             <div>

@@ -5,16 +5,15 @@ import { useSelector } from "react-redux";
 
 const TodoItems = () => {
 
-    const todos2 = useSelector((state) => {
+    const todos = useSelector((state) => {
         return state.todos;
     });
-
 
     return (
         <TodoItemsBox>
             <Title>Working</Title>
             <ItemWrapper>
-                {todos2.map(function (todo) {
+                {todos.map(function (todo) {
                     if (!todo.isDone) {
                         return (
                             <Todo
@@ -27,7 +26,7 @@ const TodoItems = () => {
             </ItemWrapper>
             <Title>Done</Title>
             <ItemWrapper>
-                {todos2.map(function (todo) {
+                {todos.map(function (todo) {
                     if (todo.isDone) {
                         return (
                             <Todo
