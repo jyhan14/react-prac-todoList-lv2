@@ -1,13 +1,14 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Details from "../pages/Details";
 import { deleteAction, updateAction } from "../redux/modules/todos";
 
 const Todo = ({todo}) => {
-    const todos = useSelector((state) => {
-        return state.todos;
-    });
+
     const dispatch = useDispatch();
+
 
     const deleteTodos = (id) => {
         dispatch(deleteAction(id));
@@ -19,6 +20,9 @@ const Todo = ({todo}) => {
 
     return (
         <TodoContainer>
+            <Link to={`/details/${todo.id}`}>상세보기
+            </Link>
+
             <div>
                 <h2>{todo.title}</h2>
                 <div>{todo.body}</div>
