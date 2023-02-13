@@ -1,0 +1,36 @@
+.todoForm {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+
+    background-color: #eee;
+    border-radius: 12px;
+    padding: 30px;
+
+}
+
+.inputs {
+    font-weight: bold;
+    align-items: center;
+    display: flex;
+    gap: 20px;
+}
+
+
+.addBtn{
+    background-color: teal;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 700;
+    height: 40px;
+    width: 140px;
+}
+
+.inputbox{
+    border: none;
+    border-radius: 12px;
+    height: 40px;
+    padding: 0 12px;
+    width: 240px;
+}
