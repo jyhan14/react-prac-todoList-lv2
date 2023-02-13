@@ -1,23 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-const LayoutBox = styled.div`
-    margin: 10px auto auto;
-    max-width: 1200px;
-    min-width: 800px;
-`;
-
-const Header = styled.div`
-    align-items: center;
-    border: 1px solid #ddd;
-
-    display: flex;
-    justify-content: space-between;
-
-    height: 50px;
-    padding: 0 20px;
-`;
-
 function Layout(props) {
     return (
         <>
@@ -36,3 +19,21 @@ function Layout(props) {
 }
 
 export default Layout;
+
+const LayoutBox = styled.div`
+    margin: 10px auto auto;
+    max-width: 1200px;
+    min-width: 800px;
+`;
+
+const Header = styled.div`
+    align-items: center;
+    border: 1px solid #ddd;
+
+    display: flex;
+    justify-content: space-between;
+
+    height: 50px;
+    padding: 0 20px;
+`;
+
