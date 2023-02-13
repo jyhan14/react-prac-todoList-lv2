@@ -1,8 +1,15 @@
 import React from "react";
 import Todo from "./Todo";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 
 const TodoItems = ({ todos, setTodos }) => {
+
+    const todos2 = useSelector((state) => {
+        return state.todos;
+    });
+
+
     const deleteTodos = (id) => {
         const newTodos = todos.filter((todo) => todo.id !== id);
         setTodos(newTodos);
@@ -20,7 +27,7 @@ const TodoItems = ({ todos, setTodos }) => {
         <TodoItemsBox>
             <Title>Working</Title>
             <ItemWrapper>
-                {todos.map(function (todo) {
+                {todos2.map(function (todo) {
                     if (!todo.isDone) {
                         return (
                             <Todo
@@ -35,7 +42,7 @@ const TodoItems = ({ todos, setTodos }) => {
             </ItemWrapper>
             <Title>Done</Title>
             <ItemWrapper>
-                {todos.map(function (todo) {
+                {todos2.map(function (todo) {
                     if (todo.isDone) {
                         return (
                             <Todo

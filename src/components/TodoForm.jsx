@@ -1,7 +1,15 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { create } from "../redux/modules/todos";
 
-const TodoForm = ({ todos, setTodos }) => {
+const TodoForm = () => {
+    const todos = useSelector((state) => {
+        return state.todos;
+    });
+
+    const dispatch = useDispatch();
+
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
 
@@ -16,19 +24,14 @@ const TodoForm = ({ todos, setTodos }) => {
     const addTodos = (e) => {
         e.preventDefault();
 
-        const newTodos = {
-            id: todos.length == 0 ? 1 : todos[todos.length -1].id + 1,
-            title,
-            body,
-            isDone: false,
-        };
+        let id = todos.length == 0 ? 1 : todos[todos.length -1].id + 1;
 
         if (title == "") {
             alert("제목을 입력하세요!");
         } else if (body == "") {
             alert("내용을 입력하세요!");
         } else {
-            setTodos([...todos, newTodos]);
+            dispatch(create(id,title,body));
         }
         setTitle(""); 
         setBody(""); 
