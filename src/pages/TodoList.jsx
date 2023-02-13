@@ -1,9 +1,19 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import Layout from "../components/Layout";
 import TodoForm from "../components/TodoForm";
 import TodoItems from "../components/TodoItems";
 
 const TodoList = () => {
+    // 여기에서 store에 접근하여 todos의 값을 읽어오고 싶다!
+    // useSelector
+
+    const todos2 = useSelector((state) => {
+        return state.todos;
+    });
+
+    console.log(todos2);
+
     const [todos, setTodos] = useState([
         {
             id: 1,

@@ -1,6 +1,47 @@
 import React from "react";
 import Todo from "./Todo";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+
+const TodoItems = () => {
+
+    const todos = useSelector((state) => {
+        return state.todos;
+    });
+
+    return (
+        <TodoItemsBox>
+            <Title>Working</Title>
+            <ItemWrapper>
+                {todos.map(function (todo) {
+                    if (!todo.isDone) {
+                        return (
+                            <Todo
+                                key={todo.id}
+                                todo={todo}
+                            />
+                        );
+                    }
+                })}
+            </ItemWrapper>
+            <Title>Done</Title>
+            <ItemWrapper>
+                {todos.map(function (todo) {
+                    if (todo.isDone) {
+                        return (
+                            <Todo
+                                key={todo.id}
+                                todo={todo}
+                            />
+                        );
+                    } else return null;
+                })}
+            </ItemWrapper>
+        </TodoItemsBox>
+    );
+};
+
+export default TodoItems;
 
 const TodoItemsBox = styled.div`
     padding: 0 24px;
@@ -20,55 +61,3 @@ const ItemWrapper = styled.div`
     flex-wrap: wrap;
     gap: 12px;
 `;
-
-const TodoItems = ({ todos, setTodos }) => {
-    const deleteTodos = (id) => {
-        const newTodos = todos.filter((todo) => todo.id !== id);
-        setTodos(newTodos);
-    };
-
-    const updateTodos = (id) => {
-        setTodos(
-            todos.map((todo) =>
-                todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
-            )
-        );
-    };
-
-    return (
-        <TodoItemsBox>
-            <Title>Working</Title>
-            <ItemWrapper>
-                {todos.map(function (todo) {
-                    if (!todo.isDone) {
-                        return (
-                            <Todo
-                                key={todo.id}
-                                todo={todo}
-                                deleteTodos={deleteTodos}
-                                updateTodos={updateTodos}
-                            />
-                        );
-                    }
-                })}
-            </ItemWrapper>
-            <Title>Done</Title>
-            <ItemWrapper>
-                {todos.map(function (todo) {
-                    if (todo.isDone) {
-                        return (
-                            <Todo
-                                key={todo.id}
-                                todo={todo}
-                                deleteTodos={deleteTodos}
-                                updateTodos={updateTodos}
-                            />
-                        );
-                    } else return null;
-                })}
-            </ItemWrapper>
-        </TodoItemsBox>
-    );
-};
-
-export default TodoItems;
