@@ -1,6 +1,25 @@
 import React from "react";
-import "./todoItems.css";
-import Todo from "../todo/Todo";
+import Todo from "./Todo";
+import styled from "styled-components";
+
+const TodoItemsBox = styled.div`
+    padding: 0 24px;
+`;
+
+const Title = styled.h2`
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bo;
+`;
+const ItemWrapper = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+`;
 
 const TodoItems = ({ todos, setTodos }) => {
     const deleteTodos = (id) => {
@@ -9,10 +28,6 @@ const TodoItems = ({ todos, setTodos }) => {
     };
 
     const updateTodos = (id) => {
-        //https://react.vlpt.us/basic/15-array-modify.html 참고
-        // todos를 map으로 풀어주고, 그 안의 값들 중 todo.id가 받아온 id와 같을때,
-        // todo를 풀어주고, isDone을 반대의 값을 넣어준다.
-        // 같지않을때는 그냥 todo(냅두기)
         setTodos(
             todos.map((todo) =>
                 todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
@@ -21,9 +36,9 @@ const TodoItems = ({ todos, setTodos }) => {
     };
 
     return (
-        <div className="todoItems">
-            <h2 className="title">Working</h2>
-            <div className="itemsWrapper">
+        <TodoItemsBox>
+            <Title>Working</Title>
+            <ItemWrapper>
                 {todos.map(function (todo) {
                     if (!todo.isDone) {
                         return (
@@ -36,9 +51,9 @@ const TodoItems = ({ todos, setTodos }) => {
                         );
                     }
                 })}
-            </div>
-            <h2 className="title">Done</h2>
-            <div className="itemsWrapper">
+            </ItemWrapper>
+            <Title>Done</Title>
+            <ItemWrapper>
                 {todos.map(function (todo) {
                     if (todo.isDone) {
                         return (
@@ -51,8 +66,8 @@ const TodoItems = ({ todos, setTodos }) => {
                         );
                     } else return null;
                 })}
-            </div>
-        </div>
+            </ItemWrapper>
+        </TodoItemsBox>
     );
 };
 
