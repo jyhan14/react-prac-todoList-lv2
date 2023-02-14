@@ -9,9 +9,7 @@ function Layout(props) {
                 <div>My TodoList</div>
                 <div>React</div>
             </Header>
-            <div>
             {props.children}
-            </div>
         </LayoutBox>
         
         </>
