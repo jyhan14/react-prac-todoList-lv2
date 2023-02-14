@@ -5,23 +5,22 @@ import styled from "styled-components";
 import Details from "../pages/Details";
 import { deleteAction, updateAction } from "../redux/modules/todos";
 
-const Todo = ({todo}) => {
-
+const Todo = ({ todo }) => {
     const dispatch = useDispatch();
-
 
     const deleteTodos = (id) => {
         dispatch(deleteAction(id));
-    }
+    };
 
     const updateTodos = (id) => {
         dispatch(updateAction(id));
-    }
+    };
 
     return (
         <TodoContainer>
-            <Link to={`/details/${todo.id}`}>상세보기
-            </Link>
+            <LinkBox>
+                <Link to={`/details/${todo.id}`} style={{textDecoration:'none'}}>상세보기</Link>
+            </LinkBox>
 
             <div>
                 <h2>{todo.title}</h2>
@@ -29,13 +28,16 @@ const Todo = ({todo}) => {
             </div>
 
             <BtnsBox>
+                <Btn borderColor="red" onClick={() => deleteTodos(todo.id)}>
+                    삭제
+                </Btn>
                 <Btn
-                borderColor="red"
-                onClick={() => deleteTodos(todo.id)}>삭제</Btn>
-                <Btn
-                borderColor="green"
-                className="doneBtn"
-                onClick={() => updateTodos(todo.id)}>{todo.isDone ? "취소" : "완료"}</Btn>
+                    borderColor="green"
+                    className="doneBtn"
+                    onClick={() => updateTodos(todo.id)}
+                >
+                    {todo.isDone ? "취소" : "완료"}
+                </Btn>
             </BtnsBox>
         </TodoContainer>
     );
@@ -63,6 +65,10 @@ const Btn = styled.button`
     width: 50%;
 
     background-color: #fff;
-    border: 2px solid ${(props) => props.borderColor}
+    border: 2px solid ${(props) => props.borderColor};
 `;
 
+const LinkBox = styled.a`
+    display: flex;
+    justify-content: end;
+`;
