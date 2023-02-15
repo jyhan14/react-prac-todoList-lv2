@@ -139,29 +139,45 @@ function Prac() {
                             onChange={numberComma}
                         />
                     </div>
-                    <button>저장</button>
+                    <Btns
+                    backgroundColor=" rgb(85, 239, 196)"
+                        border="none"
+                        height="40px"
+                        width="100px">저장</Btns>
                 </DivBox>
             </form>
             <div>
                 <h1>Modal</h1>
+                <DivBox>
                 <div>
-                    <button onClick={showModal}>open modal</button>
+                    <Btns
+                    backgroundColor="rgb(250, 177, 160)"
+                    border="none"
+                    height="45px"
+                    width="100px" 
+                    onClick={showModal}>open modal</Btns>
                     {modal && <Modal setModal={setModal} />}
                 </div>
                 <div>
-                    <button onClick={showModal2}>open modal</button>
+                    <Btns
+                    backgroundColor="rgb(85, 239, 196)"
+                    border="none"
+                    height="45px"
+                    width="100px"
+                    onClick={showModal2}>open modal</Btns>
                     {modal2 && <Modal2 setModal2={setModal2} />}
                 </div>
+                </DivBox>
             </div>
             <div>
                 <SelectBorderBox>
                     <h1>Select</h1>
                     <div style={{ display: "flex", gap: "10px" }}>
                         <div style={{ position: "relative" }}>
-                            <SelectBox/>
+                            <SelectBox options={OPTIONS}/>
                         </div>
                         <div style={{ position: "relative" }}>
-                            <SelectBox/>
+                            <SelectBox options={OPTIONS}/>
                         </div>
                     </div>
                 </SelectBorderBox>
@@ -314,12 +330,9 @@ const SelectBox = ({ options }) => {
     // );
     return (
         <Select>
-            <option style={{backgroundColor:"red"}}>
-                ddasd
-            </option>
-            {/* {options.map((option) => {
-                return <Option key={option.value}>{option.name}</Option>;
-            })} */}
+            {options.map((option) => {
+                return <Options key={option.value}>{option.name}</Options>;
+            })}
         </Select>
     );
 };
@@ -332,9 +345,9 @@ const Select = styled.select`
     border-radius: 12px;
 `;
 
-// const Options = styled.option`
-//     color: red;
-// `
+const Options = styled.option`
+    color: red;
+`
 
 
 const SelectBorderBox = styled.div`
