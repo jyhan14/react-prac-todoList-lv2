@@ -63,10 +63,7 @@ function Prac() {
                             alert("버튼을 만들어보세요!");
                         }}
                     >
-                        <BtnArrow>
-                            Large Primary Button
-                          
-                        </BtnArrow>
+                        <BtnArrow>Large Primary Button</BtnArrow>
                     </Btns>
 
                     <Btns
@@ -97,10 +94,7 @@ function Prac() {
                             window.prompt("어렵나요?");
                         }}
                     >
-                        <BtnArrow>
-                            Large Primary Button
-                           
-                        </BtnArrow>
+                        <BtnArrow>Large Primary Button</BtnArrow>
                     </Btns>
                     <Btns
                         backgroundColor=" rgb(250, 177, 160)"
@@ -140,33 +134,42 @@ function Prac() {
                         />
                     </div>
                     <Btns
-                    backgroundColor=" rgb(85, 239, 196)"
+                        backgroundColor=" rgb(85, 239, 196)"
                         border="none"
                         height="40px"
-                        width="100px">저장</Btns>
+                        width="100px"
+                    >
+                        저장
+                    </Btns>
                 </DivBox>
             </form>
             <div>
                 <h1>Modal</h1>
                 <DivBox>
-                <div>
-                    <Btns
-                    backgroundColor="rgb(250, 177, 160)"
-                    border="none"
-                    height="45px"
-                    width="100px" 
-                    onClick={showModal}>open modal</Btns>
-                    {modal && <Modal setModal={setModal} />}
-                </div>
-                <div>
-                    <Btns
-                    backgroundColor="rgb(85, 239, 196)"
-                    border="none"
-                    height="45px"
-                    width="100px"
-                    onClick={showModal2}>open modal</Btns>
-                    {modal2 && <Modal2 setModal2={setModal2} />}
-                </div>
+                    <div>
+                        <Btns
+                            backgroundColor="rgb(250, 177, 160)"
+                            border="none"
+                            height="45px"
+                            width="100px"
+                            onClick={showModal}
+                        >
+                            open modal
+                        </Btns>
+                        {modal && <Modal setModal={setModal} />}
+                    </div>
+                    <div>
+                        <Btns
+                            backgroundColor="rgb(85, 239, 196)"
+                            border="none"
+                            height="45px"
+                            width="100px"
+                            onClick={showModal2}
+                        >
+                            open modal
+                        </Btns>
+                        {modal2 && <Modal2 setModal2={setModal2} />}
+                    </div>
                 </DivBox>
             </div>
             <div>
@@ -218,7 +221,7 @@ const DivBox = styled.div`
     display: flex;
     flex-direction: row;
     gap: 30px;
-`
+`;
 
 const InputBox = styled.input`
     border: 1px solid rgb(51, 51, 51);
@@ -348,7 +351,6 @@ const Select = styled.select`
 const Options = styled.option`
     color: red;
 `
-
 
 const SelectBorderBox = styled.div`
     border: 3px solid rgb(221, 221, 221);
