@@ -3,6 +3,8 @@ import React, { useState } from "react";
 function Prac() {
 
     //inputs
+
+    const [inputName, setInputName] = useState('');
     const [price, setPrice]  = useState(0);
 
     const numberComma = (e) => {
@@ -11,8 +13,23 @@ function Prac() {
         setPrice(removedCommaValue.toLocaleString());
     }
 
+    const nameChangeHandler = (e) => {
+        setInputName(e.target.value);
+    }
 
+    const submitHandler = () => {
+        const newInputs = {
+            name: inputName,
+            price,
+        };
 
+        let resultString = "";
+        for(const [key, value] of Object.entries(newInputs)){
+            resultString += `${key} : ${value}\n`
+        }
+
+        alert(resultString)
+    }
 
     return (
         <>
@@ -30,17 +47,18 @@ function Prac() {
                 </div>
             </div>
             <h1>Input</h1>
-            <form >
+            <form onSubmit={submitHandler}>
                 <div>
                     <div>
                         <label>이름</label>
                         <input type="text"
+                        value={inputName}
+                        onChange={nameChangeHandler}
                         />
                     </div>
                     <div>
                         <label>가격</label>
                         <input type="text"
-                        name="price"
                         value={price}
                         onChange={numberComma}/>
                     </div>
