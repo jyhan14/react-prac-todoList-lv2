@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 function Prac() {
@@ -38,6 +38,12 @@ function Prac() {
 
     const showModal = () => {
         setModal(true);
+    };
+
+    const [modal2, setModal2] = useState(false);
+
+    const showModal2 = () => {
+        setModal2(true);
     };
 
     return (
@@ -84,8 +90,8 @@ function Prac() {
                     {modal && <Modal setModal={setModal} />}
                 </div>
                 <div>
-                    <button onClick={showModal}>open modal</button>
-                    {modal && <Modal2 setModal={setModal} />}
+                    <button onClick={showModal2}>open modal</button>
+                    {modal2 && <Modal2 setModal2={setModal2} />}
                 </div>
             </div>
             <div>
@@ -109,24 +115,49 @@ function Modal({ setModal }) {
     const closeModal = () => {
         setModal(false);
     };
-
-    return (
-        <ModalBox>
-            <ModalClose onClick={closeModal}>x</ModalClose>
-            <p>모달창 테스트!</p>
-        </ModalBox>
-    );
-}
-
-function Modal2({setModal}) {
-    const closeModal = () => {
-        setModal(false);
+    
+    const confirmModal = () => {
+        console.log('on!!');
     };
 
     return (
         <ModalBox>
+
+            <p>모달창 테스트!</p>
+            <button onClick={closeModal}>닫기</button>
+            <button onClick={confirmModal}>확인</button>
+        </ModalBox>
+    );
+}
+
+function Modal2({setModal2}) {
+    const closeModal = () => {
+        setModal2(false);
+    };
+
+    //모달창을 useRef로 취득
+    const modalRef = useRef(null);
+
+    useEffect(() => {
+        const handler = (event) => {
+            if(modalRef.current && !modalRef.current.contains(event.target)){
+                setModal2(false);
+            }
+        };
+        // 이벤트 핸들러 등록
+        document.addEventListener('mousedown', handler);
+        
+        return () => {
+            // 이벤트 핸들러 해제
+            document.removeEventListener('mousedown', handler);
+        };
+    })
+
+    return (
+        <ModalBox ref={modalRef}>
             <ModalClose onClick={closeModal}>x</ModalClose>
             <p>모달창 테스트222</p>
+            <p>닫기 버튼 1개가 있고, 외부 영역을 누르면 모달이 닫혀요!</p>
         </ModalBox>
     );
 }
