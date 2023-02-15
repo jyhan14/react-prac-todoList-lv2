@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import Prac from "../pages/Prac";
 
 function Layout(props) {
     return (
@@ -7,7 +9,9 @@ function Layout(props) {
         <LayoutBox>
             <Header>   
                 <div>My TodoList</div>
-                <div>React</div>
+                <div>
+                    <Link to={`Prac`} style={{textDecoration:'none'}}>Lv3 보러가기</Link>
+                </div>
             </Header>
             {props.children}
         </LayoutBox>

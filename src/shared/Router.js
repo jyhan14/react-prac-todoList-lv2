@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Layout from "../components/Layout";
 
 import Details from "../pages/Details";
 import TodoList from "../pages/TodoList";
+import Prac from "../pages/Prac"
 
 
 const Router = () => {
@@ -11,6 +11,7 @@ const Router = () => {
             <Routes>
                 <Route path="/" element={<TodoList />} />
                 <Route path="/details/:id" element={<Details />} />
+                <Route path="/prac" element={<Prac/>}/>
             </Routes>
         </BrowserRouter>
     );
