@@ -2,19 +2,16 @@ import React, { useState } from "react";
 
 function Prac() {
 
-    //input
-    const [num, setNum] = useState('');
-    const [inputName, setInputName] = useState('');
+    //inputs
+    const [price, setPrice]  = useState(0);
 
     const numberComma = (e) => {
         const value = e.target.value;
         const removedCommaValue = Number(value.replaceAll(',',""));
-        setNum(removedCommaValue.toLocaleString());
+        setPrice(removedCommaValue.toLocaleString());
     }
 
-    const formSubmit = (e) => {
-        e.preventDefault();
-    }
+
 
 
     return (
@@ -33,17 +30,18 @@ function Prac() {
                 </div>
             </div>
             <h1>Input</h1>
-            <form onSubmit={formSubmit}>
+            <form >
                 <div>
                     <div>
                         <label>이름</label>
                         <input type="text"
-                        value={inputName}/>
+                        />
                     </div>
                     <div>
                         <label>가격</label>
                         <input type="text"
-                        value={num}
+                        name="price"
+                        value={price}
                         onChange={numberComma}/>
                     </div>
                     <button>저장</button>
