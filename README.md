@@ -11,6 +11,8 @@
 
 - 2022 Feb 14 :
   - 상세페이지 css 적용
+- 2022 Feb 15 :
+  - lv3 페이지 추가(Button, Input, Modal, Select)
 
 ## 🗂 src -> app.js
 - pages 폴더의 TodoList.jsx
@@ -18,6 +20,7 @@
 ## 🗂 src -> pages
 - TodoList.jsx : components 폴더의 Layout, TodoForm, TodoItems
 - Details.jsx : Todo에서 넘어오는 상세페이지
+- Prac.jsx : lv3 과제 페이지
 ## 🗂 src -> components
 - Layout
   - 전체 틀 및 헤더
