@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import Select from 'react-select';
 
 function Prac() {
     //--------------------------------------------------------
@@ -175,12 +176,18 @@ function Prac() {
             <div>
                 <SelectBorderBox>
                     <h1>Select</h1>
-                    <div style={{ display: "flex", gap: "10px" }}>
-                        <div style={{ position: "relative" }}>
-                            <SelectBox options={OPTIONS}/>
+                    <div style={{ display: "flex", gap: "10px", position:"relative"}}>
+                        <div style={{ position: "relative", marginLeft: "150px"}}>
+                            <Select options={option}
+                            defaultValue={option[0]}
+                            styles={{display: "block"}}/>
                         </div>
-                        <div style={{ position: "relative" }}>
-                            <SelectBox options={OPTIONS}/>
+                        
+                        <div style={{ position: "fixed", overflow:"visible"}}>
+                        <Select 
+                        options={option}
+                        defaultValue={option[0]}
+                        />
                         </div>
                     </div>
                 </SelectBorderBox>
@@ -317,40 +324,21 @@ const ModalClose = styled.button`
 `;
 
 //---------------------------------------------------------------------------
-const OPTIONS = [
-    { value: "react", name: "리액트" },
-    { value: "java", name: "자바" },
-    { value: "spring", name: "스프링" },
-    { value: "reactNative", name: "리액트네이티브" },
+const option = [
+    { value: "react", label: "리액트" },
+    { value: "java", label: "자바" },
+    { value: "spring", label: "스프링" },
+    { value: "reactNative", label: "리액트네이티브" },
 ];
 
-const SelectBox = ({ options }) => {
-    // console.log(options[0].value);
-    // console.log(
-    //     options.map((o) => {
-    //         return o.name;
-    //     })
-    // );
-    return (
-        <Select>
-            {options.map((option) => {
-                return <Options key={option.value}>{option.name}</Options>;
-            })}
-        </Select>
-    );
-};
 
-const Select = styled.select`
-    border: 1px solid rgb(221, 221, 221);
-    height: 40px;
-    width: 300px;
-    background-color: rgb(255, 255, 255);
-    border-radius: 12px;
-`;
-
-const Options = styled.option`
-    color: red;
-`
+// const Select = styled.select`
+//     border: 1px solid rgb(221, 221, 221);
+//     height: 40px;
+//     width: 300px;
+//     background-color: rgb(255, 255, 255);
+//     border-radius: 12px;
+// `;
 
 const SelectBorderBox = styled.div`
     border: 3px solid rgb(221, 221, 221);
