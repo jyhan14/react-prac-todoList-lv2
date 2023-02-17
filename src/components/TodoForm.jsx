@@ -8,49 +8,52 @@ const TodoForm = () => {
         return state.todos;
     });
 
+    const [todo, setTodo] = useState({
+        id: 0,
+        title: "",
+        body: "",
+        isDone: false,
+    });
+
     const dispatch = useDispatch();
 
-    const [title, setTitle] = useState("");
-    const [body, setBody] = useState("");
-
-    const titleChangeHandler = (e) => {
-        setTitle(e.target.value);
-    };
-
-    const bodyChangeHandler = (e) => {
-        setBody(e.target.value);
+    const onChangeHandler = (event) => {
+        const { name, value } = event.target;
+        setTodo({ ...todo, [name]: value });
     };
 
     const addTodos = (e) => {
         e.preventDefault();
 
-        let id = todos.length == 0 ? 1 : todos[todos.length -1].id + 1;
+        let id = todos.length == 0 ? 1 : todos[todos.length - 1].id + 1;
 
-        if (title == "") {
-            alert("제목을 입력하세요!");
-        } else if (body == "") {
-            alert("내용을 입력하세요!");
-        } else {
-            dispatch(create(id,title,body));
-        }
-        setTitle(""); 
-        setBody(""); 
+        if (todo.title.trim() === "" || todo.body.trim() === "") return;
+
+        dispatch(create({ ...todo, id }));
+        setTodo({
+            id: 0,
+            title: "",
+            body: "",
+            isDone: false,
+        });
     };
-    
+
     return (
         <TodoFormBox onSubmit={addTodos}>
             <Inputs>
                 <label>제목 : </label>
                 <InputBox
-                    type="text"
-                    value={title}
-                    onInput={titleChangeHandler}
+                    type='text'
+                    name='title'
+                    value={todo.title}
+                    onInput={onChangeHandler}
                 />
                 <label>내용 : </label>
                 <InputBox
-                    type="text"
-                    value={body}
-                    onChange={bodyChangeHandler}
+                    type='text'
+                    name='body'
+                    value={todo.body}
+                    onChange={onChangeHandler}
                 />
             </Inputs>
             <AddBtns>추가하기</AddBtns>
@@ -59,7 +62,6 @@ const TodoForm = () => {
 };
 
 export default TodoForm;
-
 
 const TodoFormBox = styled.form`
     margin-top: 10px;
@@ -79,7 +81,7 @@ const Inputs = styled.div`
 `;
 
 const InputBox = styled.input`
-        border: none;
+    border: none;
     border-radius: 12px;
     height: 40px;
     padding: 0 12px;
